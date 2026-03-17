@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExpatWealth — AI Financial Copilot for UAE Expats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+            desert: { 50: '#FFF8ED', 100: '#FFEED4', 600: '#C2410C', 700: '#9A3412' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #1e3a5f 100%); }
+    .card-glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.12); }
+    .gold-glow { box-shadow: 0 0 20px rgba(251,191,36,0.3); }
+    .step-active { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .ai-typing::after { content: '|'; animation: blink 1s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+    .slide-in { animation: slideIn 0.4s ease-out; }
+    @keyframes slideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+
+  <!-- Header -->
+  <header class="px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center text-black font-bold text-sm">EW</div>
+      <span class="font-bold text-lg">ExpatWealth</span>
+      <span class="text-xs bg-gold-500 text-black px-2 py-0.5 rounded-full font-semibold ml-1">BETA</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-sm text-white/70">
+      <a href="#tool" class="hover:text-gold-400 transition-colors">AI Calculator</a>
+      <a href="#features" class="hover:text-gold-400 transition-colors">Features</a>
+      <a href="#pricing" class="hover:text-gold-400 transition-colors">Pricing</a>
+    </nav>
+    <a href="#waitlist" class="bg-gold-500 hover:bg-gold-600 text-black text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Join Waitlist</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm text-gold-400 mb-6 border border-gold-500/30">
+      <span>🇦🇪</span>
+      <span>Built for UAE & Gulf Expats</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+      Your AI Financial<br />
+      <span class="text-gold-400">Copilot in Dubai</span>
+    </h1>
+    <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+      Gratuity planning. Multi-currency net worth. Remittance optimization. 
+      Tax-free wealth building. Everything a UAE expat needs — finally in one AI-powered place.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#tool" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-8 py-3.5 rounded-xl text-lg transition-colors gold-glow">
+        Try Free AI Calculator →
+      </a>
+      <a href="#waitlist" class="bg-white/10 hover:bg-white/20 border border-white/20 font-semibold px-8 py-3.5 rounded-xl text-lg transition-colors">
+        Join Waitlist
+      </a>
+    </div>
+    <p class="text-white/40 text-sm mt-4">No signup required • Free to use • 2 min</p>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <h2 class="text-center text-2xl font-bold mb-8 text-white/90">Sound familiar?</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="card-glass rounded-2xl p-5">
+        <div class="text-3xl mb-3">😰</div>
+        <p class="text-sm text-white/80">"My contract ends in 18 months. I have no idea if I have enough saved to make a move."</p>
+      </div>
+      <div class="card-glass rounded-2xl p-5">
+        <div class="text-3xl mb-3">💸</div>
+        <p class="text-sm text-white/80">"I'm paying too much on remittances but I don't know which platform is actually cheapest for my scenario."</p>
+      </div>
+      <div class="card-glass rounded-2xl p-5">
+        <div class="text-3xl mb-3">🤷</div>
+        <p class="text-sm text-white/80">"I have gratuity accumulating but I don't know if I should take the new EOSB scheme or keep traditional."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Gratuity Calculator Tool -->
+  <section id="tool" class="max-w-3xl mx-auto px-6 py-12">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold mb-3">AI Gratuity & Savings Planner</h2>
+      <p class="text-white/60">Answer 4 questions. Get an instant AI financial snapshot.</p>
+    </div>
+
+    <div class="card-glass rounded-3xl p-8">
+      <!-- Step 1 -->
+      <div id="step1" class="slide-in">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="step-active w-7 h-7 rounded-full flex items-center justify-center text-black text-sm font-bold">1</div>
+          <span class="text-sm text-white/60">Step 1 of 4</span>
+        </div>
+        <label class="block text-lg font-semibold mb-4">Your basic monthly salary (AED)?</label>
+        <input id="salary" type="number" placeholder="e.g. 25000" 
+          class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white text-lg placeholder:text-white/30 focus:outline-none focus:border-gold-400 transition-colors"
+          onkeydown="if(event.key==='Enter'){event.preventDefault(); validateAndNext(1);}" />
+        <p id="salary-error" class="hidden text-red-400 text-sm mt-2">Please enter your salary to continue</p>
+        <button onclick="validateAndNext(1)" class="mt-4 w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3.5 rounded-xl transition-colors">
+          Next →
+        </button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="hidden slide-in">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="step-active w-7 h-7 rounded-full flex items-center justify-center text-black text-sm font-bold">2</div>
+          <span class="text-sm text-white/60">Step 2 of 4</span>
+        </div>
+        <label class="block text-lg font-semibold mb-4">How many years have you worked in UAE?</label>
+        <input id="years" type="number" placeholder="e.g. 3.5" step="0.5"
+          class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white text-lg placeholder:text-white/30 focus:outline-none focus:border-gold-400 transition-colors"
+          onkeydown="if(event.key==='Enter'){event.preventDefault(); validateAndNext(2);}" />
+        <p id="years-error" class="hidden text-red-400 text-sm mt-2">Please enter years worked</p>
+        <button onclick="validateAndNext(2)" class="mt-4 w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3.5 rounded-xl transition-colors">
+          Next →
+        </button>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step3" class="hidden slide-in">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="step-active w-7 h-7 rounded-full flex items-center justify-center text-black text-sm font-bold">3</div>
+          <span class="text-sm text-white/60">Step 3 of 4</span>
+        </div>
+        <label class="block text-lg font-semibold mb-4">Monthly remittance to home country (AED)?</label>
+        <input id="remittance" type="number" placeholder="e.g. 3000 (or 0 if none)"
+          class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white text-lg placeholder:text-white/30 focus:outline-none focus:border-gold-400 transition-colors"
+          onkeydown="if(event.key==='Enter'){event.preventDefault(); validateAndNext(3);}" />
+        <p id="remittance-error" class="hidden text-red-400 text-sm mt-2">Please enter your monthly remittance (enter 0 if none)</p>
+        <button onclick="validateAndNext(3)" class="mt-4 w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3.5 rounded-xl transition-colors">
+          Next →
+        </button>
+      </div>
+
+      <!-- Step 4 -->
+      <div id="step4" class="hidden slide-in">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="step-active w-7 h-7 rounded-full flex items-center justify-center text-black text-sm font-bold">4</div>
+          <span class="text-sm text-white/60">Step 4 of 4</span>
+        </div>
+        <label class="block text-lg font-semibold mb-4">What's your primary goal?</label>
+        <div class="grid grid-cols-1 gap-3">
+          <button onclick="setGoal('retire')" class="goal-btn text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-gold-400 px-5 py-4 rounded-xl transition-all">
+            🏖️ <span class="ml-2">Build enough to go back home / retire early</span>
+          </button>
+          <button onclick="setGoal('buy')" class="goal-btn text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-gold-400 px-5 py-4 rounded-xl transition-all">
+            🏠 <span class="ml-2">Save for property (home country or UAE)</span>
+          </button>
+          <button onclick="setGoal('invest')" class="goal-btn text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-gold-400 px-5 py-4 rounded-xl transition-all">
+            📈 <span class="ml-2">Maximize tax-free wealth while in UAE</span>
+          </button>
+          <button onclick="setGoal('freedom')" class="goal-btn text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-gold-400 px-5 py-4 rounded-xl transition-all">
+            🚀 <span class="ml-2">Build financial freedom to start a business</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden slide-in">
+        <div class="text-center mb-6">
+          <div class="text-4xl mb-2">🤖</div>
+          <p class="text-gold-400 font-semibold">AI Analysis Complete</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+          <div class="bg-gold-500/10 border border-gold-500/30 rounded-xl p-4 text-center">
+            <p class="text-white/60 text-xs mb-1">Gratuity Earned (est.)</p>
+            <p id="res-gratuity" class="text-2xl font-bold text-gold-400"></p>
+            <p class="text-white/40 text-xs">AED</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <p class="text-white/60 text-xs mb-1">Annual Savings Potential</p>
+            <p id="res-savings" class="text-2xl font-bold text-white"></p>
+            <p class="text-white/40 text-xs">AED / year</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <p class="text-white/60 text-xs mb-1">Remittance Cost (est.)</p>
+            <p id="res-remittance-cost" class="text-2xl font-bold text-white"></p>
+            <p class="text-white/40 text-xs">AED wasted/year</p>
+          </div>
+        </div>
+
+        <!-- AI Insights -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-5">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-6 h-6 bg-gold-500 rounded-full flex items-center justify-center text-black text-xs font-bold">AI</div>
+            <span class="text-gold-400 text-sm font-semibold">AI Financial Insights</span>
+          </div>
+          <div id="ai-insights" class="text-white/80 text-sm leading-relaxed space-y-2"></div>
+        </div>
+
+        <div class="text-center">
+          <p class="text-white/50 text-sm mb-4">Want the full picture? Track your multi-currency net worth, optimize remittances, and get a personalized 5-year expat financial plan.</p>
+          <a href="#waitlist" class="inline-block bg-gold-500 hover:bg-gold-600 text-black font-bold px-8 py-3.5 rounded-xl transition-colors gold-glow">
+            Get Full AI Plan — Join Waitlist
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="max-w-5xl mx-auto px-6 py-12">
+    <h2 class="text-center text-3xl font-bold mb-10">Everything an expat's finances need</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">📊</div>
+        <h3 class="font-bold mb-2">Gratuity Intelligence</h3>
+        <p class="text-sm text-white/60">Know exactly what you've earned, when to claim, and how to invest your EOSB for maximum returns.</p>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">💱</div>
+        <h3 class="font-bold mb-2">Remittance Optimizer</h3>
+        <p class="text-sm text-white/60">AI compares Wise, Remitly, Western Union in real-time. Stop overpaying on every transfer.</p>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">🌍</div>
+        <h3 class="font-bold mb-2">Multi-Currency Net Worth</h3>
+        <p class="text-sm text-white/60">AED, USD, CNY, INR, GBP — your complete financial picture across all accounts and currencies.</p>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">✈️</div>
+        <h3 class="font-bold mb-2">Exit Planning</h3>
+        <p class="text-sm text-white/60">"When can I afford to leave?" Get a clear financial runway with scenarios for your next chapter.</p>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">📈</div>
+        <h3 class="font-bold mb-2">Tax-Free Wealth Building</h3>
+        <p class="text-sm text-white/60">You're in a 0% income tax zone. AI shows you how to maximize this rare window before you leave.</p>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <div class="text-3xl mb-3">🤖</div>
+        <h3 class="font-bold mb-2">AI Financial Coach</h3>
+        <p class="text-sm text-white/60">Ask anything in plain language. "Should I take the Alternative EOSB scheme?" — instant, contextual answers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="max-w-4xl mx-auto px-6 py-12">
+    <h2 class="text-center text-3xl font-bold mb-10">Simple Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card-glass rounded-2xl p-6">
+        <p class="font-bold text-lg mb-1">Free</p>
+        <p class="text-3xl font-extrabold mb-4">$0</p>
+        <ul class="text-sm text-white/70 space-y-2 mb-6">
+          <li>✅ Gratuity Calculator</li>
+          <li>✅ Basic AI Q&A (5/month)</li>
+          <li>❌ Net Worth Dashboard</li>
+          <li>❌ Remittance Optimizer</li>
+        </ul>
+        <a href="#waitlist" class="block text-center bg-white/10 hover:bg-white/20 rounded-xl py-2.5 font-semibold text-sm transition-colors">Get Started</a>
+      </div>
+      <div class="bg-gold-500 rounded-2xl p-6 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-gold-400 text-xs px-3 py-1 rounded-full font-bold border border-gold-500">POPULAR</div>
+        <p class="font-bold text-lg mb-1 text-black">Pro</p>
+        <p class="text-3xl font-extrabold mb-4 text-black">$9.9<span class="text-lg font-normal">/mo</span></p>
+        <ul class="text-sm text-black/80 space-y-2 mb-6">
+          <li>✅ Everything in Free</li>
+          <li>✅ Multi-currency Dashboard</li>
+          <li>✅ Remittance Optimizer</li>
+          <li>✅ 5-Year Exit Plan</li>
+          <li>✅ Unlimited AI Coach</li>
+        </ul>
+        <a href="#waitlist" class="block text-center bg-black text-gold-400 hover:bg-gray-900 rounded-xl py-2.5 font-bold text-sm transition-colors">Join Waitlist</a>
+      </div>
+      <div class="card-glass rounded-2xl p-6">
+        <p class="font-bold text-lg mb-1">Teams</p>
+        <p class="text-3xl font-extrabold mb-4">$199<span class="text-lg font-normal">/mo</span></p>
+        <ul class="text-sm text-white/70 space-y-2 mb-6">
+          <li>✅ Everything in Pro</li>
+          <li>✅ HR Financial Benefits</li>
+          <li>✅ Company-wide Dashboard</li>
+          <li>✅ Dedicated Support</li>
+        </ul>
+        <a href="#waitlist" class="block text-center bg-white/10 hover:bg-white/20 rounded-xl py-2.5 font-semibold text-sm transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist -->
+  <section id="waitlist" class="max-w-2xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-3xl font-bold mb-4">Join 500+ Expats on the Waitlist</h2>
+    <p class="text-white/60 mb-8">Early access. Free 3-month Pro trial for first 100 signups.</p>
+    <div class="flex gap-3 max-w-md mx-auto">
+      <input id="email" type="email" placeholder="your@email.com"
+        class="flex-1 bg-white/10 border border-white/20 rounded-xl px-5 py-3.5 text-white placeholder:text-white/30 focus:outline-none focus:border-gold-400 transition-colors" />
+      <button onclick="joinWaitlist()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-6 py-3.5 rounded-xl transition-colors whitespace-nowrap gold-glow">
+        Join Now
+      </button>
+    </div>
+    <p id="success-msg" class="hidden mt-4 text-gold-400 font-semibold">🎉 You're on the list! We'll reach out soon.</p>
+    <p class="text-white/30 text-xs mt-3">No spam. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-white/30 text-sm border-t border-white/10">
+    <p>© 2026 ExpatWealth · Built for the UAE expat community 🇦🇪</p>
+    <p class="mt-1">Not financial advice · Always consult a qualified advisor for major decisions</p>
+  </footer>
+
+  <script>
+    let userGoal = '';
+    
+    function validateAndNext(step) {
+      const errors = {
+        1: { id: 'salary', errorId: 'salary-error', msg: 'Please enter your salary to continue' },
+        2: { id: 'years', errorId: 'years-error', msg: 'Please enter years worked' },
+        3: { id: 'remittance', errorId: 'remittance-error', msg: 'Please enter your monthly remittance (enter 0 if none)' }
+      };
+      
+      const config = errors[step];
+      const input = document.getElementById(config.id);
+      const errorEl = document.getElementById(config.errorId);
+      
+      // Hide previous errors
+      document.querySelectorAll('[id$="-error"]').forEach(el => el.classList.add('hidden'));
+      
+      if (!input.value || input.value === '') {
+        errorEl.classList.remove('hidden');
+        input.focus();
+        return;
+      }
+      
+      nextStep(step + 1);
+    }
+
+    function nextStep(step) {
+      document.querySelectorAll('[id^="step"]').forEach(el => el.classList.add('hidden'));
+      const next = document.getElementById('step' + step);
+      if (next) {
+        next.classList.remove('hidden');
+        next.classList.add('slide-in');
+      }
+    }
+
+    function setGoal(goal) {
+      userGoal = goal;
+      document.querySelectorAll('.goal-btn').forEach(b => b.classList.remove('border-gold-400', 'bg-gold-500/20'));
+      event.currentTarget.classList.add('border-gold-400', 'bg-gold-500/20');
+      setTimeout(() => calculateResults(), 400);
+    }
+
+    function calculateResults() {
+      const salary = parseFloat(document.getElementById('salary').value) || 25000;
+      const years = parseFloat(document.getElementById('years').value) || 3;
+      const remittance = parseFloat(document.getElementById('remittance').value) || 0;
+
+      // UAE Gratuity Calculation (Labour Law)
+      let gratuity = 0;
+      if (years <= 5) {
+        gratuity = (salary / 30) * 21 * years;
+      } else {
+        gratuity = (salary / 30) * 21 * 5 + (salary / 30) * 30 * (years - 5);
+      }
+
+      // Savings potential (assume 30% savings rate after costs)
+      const annualSavings = salary * 12 * 0.30;
+      
+      // Remittance cost (avg 3% fees wasted)
+      const remittanceCost = remittance * 0.03 * 12;
+
+      document.getElementById('res-gratuity').textContent = Math.round(gratuity).toLocaleString();
+      document.getElementById('res-savings').textContent = Math.round(annualSavings).toLocaleString();
+      document.getElementById('res-remittance-cost').textContent = Math.round(remittanceCost).toLocaleString();
+
+      // AI Insights
+      const insights = generateInsights(salary, years, gratuity, annualSavings, remittance, remittanceCost, userGoal);
+      document.getElementById('ai-insights').innerHTML = insights;
+
+      document.querySelectorAll('[id^="step"]').forEach(el => el.classList.add('hidden'));
+      const resultsEl = document.getElementById('results');
+      resultsEl.classList.remove('hidden');
+      resultsEl.classList.add('slide-in');
+    }
+
+    function generateInsights(salary, years, gratuity, savings, remittance, remCost, goal) {
+      const items = [];
+      
+      // Gratuity insight
+      if (years < 5) {
+        items.push(`💡 <strong>Gratuity tip:</strong> You're at ${years} years. The jump at 5 years is significant — at that point gratuity increases from 21 to 30 days per year. Consider your timing carefully.`);
+      } else {
+        items.push(`💡 <strong>Gratuity insight:</strong> With ${years} years, you've crossed the 5-year threshold. Your EOSB of ~AED ${Math.round(gratuity/1000)}K is substantial — have you considered the new Alternative EOSB scheme?`);
+      }
+
+      // Remittance
+      if (remittance > 0) {
+        items.push(`💸 <strong>Remittance alert:</strong> You're likely losing ~AED ${Math.round(remCost).toLocaleString()} per year in fees (avg 3%). Using Wise could cut this by 60-70%.`);
+      }
+
+      // Goal-specific
+      const goalInsights = {
+        retire: `🏖️ <strong>Retirement path:</strong> At your savings rate (~AED ${Math.round(savings/1000)}K/yr), in 5 years you'd have AED ${Math.round(savings*5/1000)}K in liquid savings + gratuity. That's a meaningful base for most home markets.`,
+        buy: `🏠 <strong>Property goal:</strong> With AED ${Math.round(savings/1000)}K annual savings capacity, you could reach a 20% down payment for a mid-range home in 3-4 years depending on your target market.`,
+        invest: `📈 <strong>Tax-free opportunity:</strong> Every AED you save in Dubai is 0% income tax. Index funds, REITs, or even UAE property could compound significantly. You're in a rare 0% tax window — maximize it.`,
+        freedom: `🚀 <strong>Business runway:</strong> With your savings trajectory and gratuity buffer, you could have 12-18 months of personal runway by year 5. That's enough to launch and validate most digital businesses.`
+      };
+      
+      if (goalInsights[goal]) items.push(goalInsights[goal]);
+
+      // High salary tip
+      if (salary > 30000) {
+        items.push(`⚡ <strong>High-earner note:</strong> At AED ${salary.toLocaleString()}/month, you're in the UAE's top earner bracket. Consider DIFC-regulated investment accounts — they offer more protection and international portability.`);
+      }
+
+      return items.map(i => `<p>${i}</p>`).join('');
+    }
+
+    function joinWaitlist() {
+      const email = document.getElementById('email').value;
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email');
+        return;
+      }
+      // In production: POST to API
+      document.getElementById('success-msg').classList.remove('hidden');
+      document.getElementById('email').value = '';
+    }
+  </script>
+</body>
+</html>
